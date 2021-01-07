@@ -5,7 +5,9 @@ import { Campsites } from './campsites';
 import { Comments } from './comments';
 import { Partners } from './partners';
 import { Promotions } from './promotions';
+import { Favorites } from './favorites';
 import { InitialFeedback } from './forms'
+
 
 export const ConfigureStore = () => {
     const store = createStore(
@@ -14,6 +16,7 @@ export const ConfigureStore = () => {
             comments: Comments,
             partners: Partners,
             promotions: Promotions,
+            favorites: Favorites
         }),
         applyMiddleware(thunk, logger)
     );
