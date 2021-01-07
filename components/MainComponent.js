@@ -17,8 +17,8 @@ import { fetchCampsites, fetchComments, fetchPromotions,
 const mapDispatchToProps = {
     fetchCampsites,
     fetchComments,
-    fetchPartners,
-    fetchPromotions
+    fetchPromotions,
+    fetchPartners
 };
 
 const DirectoryNavigator = createStackNavigator(
@@ -213,8 +213,8 @@ class Main extends Component {
     componentDidMount() {
         this.props.fetchCampsites();
         this.props.fetchComments();
-        this.props.fetchPartners();
         this.props.fetchPromotions();
+        this.props.fetchPartners();
     }
 
     render() {
