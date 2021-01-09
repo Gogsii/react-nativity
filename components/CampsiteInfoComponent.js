@@ -68,7 +68,7 @@ function RenderComments({comments}) {
 class CampsiteInfo extends Component {
 
     markFavorite(campsiteId) {
-        this.props.postFavorite(campsiteId);
+        this.props.postFavorite(campsiteId)
     }
 
     static navigationOptions = {
@@ -81,7 +81,7 @@ class CampsiteInfo extends Component {
         const comments = this.props.comments.comments.filter(comment => comment.campsiteId === campsiteId);
         return(
             <ScrollView>
-                <RenderCampsite campsite={campsite}
+                 <RenderCampsite campsite={campsite}
                     favorite={this.props.favorites.includes(campsiteId)}
                     markFavorite={() => this.markFavorite(campsiteId)}
                 />
