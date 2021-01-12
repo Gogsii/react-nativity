@@ -35,8 +35,9 @@ class Favorites extends Component {
                         <TouchableOpacity
                             style={styles.deleteTouchable}
                             onPress={() => this.props.deleteFavorite(item.id)}
-                        />
+                        >
                         <Text style={styles.deleteText}>Delete</Text>
+                        </TouchableOpacity>
                     </View>
                     <View>
                         <ListItem
