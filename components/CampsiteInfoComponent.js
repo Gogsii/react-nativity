@@ -28,6 +28,8 @@ function RenderCampsite(props) {
 
     const recognizeDrag = ({dx}) => (dx < -200) ? true : false;
 
+    const recognizeComment = ({dx}) => (dx > 200) ? true : false;
+
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onPanResponderGrant: () => {
@@ -47,13 +49,16 @@ function RenderCampsite(props) {
                             onPress: () => console.log('Cancel Pressed')
                         },
                         {
-                            text: 'OK',
+                            text: 'OK', 
                             onPress: () => props.favorite ?
                                 console.log('Already set as a favorite') : props.markFavorite()
                         }
                     ],
                     { cancelable: false }
                 );
+            }
+            else if (recognizeComment(gestureState)) {
+                props.onShowModal();
             }
             return true;
         }
