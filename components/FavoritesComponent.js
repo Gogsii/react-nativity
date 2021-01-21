@@ -73,7 +73,6 @@ class Favorites extends Component {
         if(this.props.campsites.isLoading) {
             return <Loading />;
         }
-
         if(this.props.campsites.errMess) {
             return ( 
                 <View>
