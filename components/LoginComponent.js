@@ -5,7 +5,7 @@ import * as SecureStore from 'expo-secure-store';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { baseUrl } from '../shared/baseUrl'
+import { baseUrl } from '../shared/baseUrl';
 
 class LoginTab extends Component {
 
@@ -21,13 +21,13 @@ class LoginTab extends Component {
 
     static navigationOptions = {
         title: 'Login',
-        tabBarIcon: ({tintColor}) => {
+        tabBarIcon: ({tintColor}) => (
             <Icon
                 name='sign-in'
                 type='font-awesome'
                 iconStyle={{color: tintColor}}
             />
-        }
+        )
     }
 
     handleLogin() {
@@ -122,6 +122,7 @@ class LoginTab extends Component {
 }
 
 class RegisterTab extends Component {
+
     constructor(props) {
         super(props);
 
@@ -133,32 +134,32 @@ class RegisterTab extends Component {
             email: '',
             remember: false,
             imageUrl: baseUrl + 'images/logo.png'
-        }
+        };
     }
 
     static navigationOptions = {
         title: 'Register',
-        tabBarIcon: ({tintColor}) => {
+        tabBarIcon: ({tintColor}) => (
             <Icon
                 name='user-plus'
                 type='font-awesome'
                 iconStyle={{color: tintColor}}
             />
-        }
+        )
     }
 
     getImageFromCamera = async () => {
         const cameraPermission = await Permissions.askAsync(Permissions.CAMERA);
         const cameraRollPermission = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
-        if(cameraPermission.status === 'granted' && cameraRollPermission.status === 'granted') {
+        if (cameraPermission.status === 'granted' && cameraRollPermission.status === 'granted') {
             const capturedImage = await ImagePicker.launchCameraAsync({
                 allowsEditing: true,
                 aspect: [1, 1]
             });
-            if(!capturedImage.cancelled) {
+            if (!capturedImage.cancelled) {
                 console.log(capturedImage);
-                this.setState({imageUrl: capturedImage.uri})
+                this.setState({imageUrl: capturedImage.uri});
             }
         }
     }
@@ -166,13 +167,9 @@ class RegisterTab extends Component {
     handleRegister() {
         console.log(JSON.stringify(this.state));
         if (this.state.remember) {
-            SecureStore.setItemAsync(
-                'userinfo',
-                JSON.stringify({
-                    username: this.state.username,
-                    password: this.state.password
-                })
-            ).catch(error => console.log('Could not save user info', error));
+            SecureStore.setItemAsync('userinfo', JSON.stringify(
+                {username: this.state.username, password: this.state.password}))
+                .catch(error => console.log('Could not save user info', error));
         } else {
             SecureStore.deleteItemAsync('userinfo').catch(
                 error => console.log('Could not delete user info', error)
@@ -185,7 +182,7 @@ class RegisterTab extends Component {
             <ScrollView>
                 <View style={styles.container}>
                     <View style={styles.imageContainer}>
-                        <Image 
+                        <Image
                             source={{uri: this.state.imageUrl}}
                             loadingIndicatorSource={require('./images/logo.png')}
                             style={styles.image}
@@ -211,7 +208,7 @@ class RegisterTab extends Component {
                         containerStyle={styles.formInput}
                         leftIconContainerStyle={styles.formIcon}
                     />
-                     <Input
+                    <Input
                         placeholder='First Name'
                         leftIcon={{type: 'font-awesome', name: 'user-o'}}
                         onChangeText={firstname => this.setState({firstname})}
@@ -270,14 +267,14 @@ const Login = createBottomTabNavigator(
     },
     {
         tabBarOptions: {
-            activeBackgroundColor: '#5673DD',
+            activeBackgroundColor: '#5637DD',
             inactiveBackgroundColor: '#CEC8FF',
             activeTintColor: '#fff',
             inactiveTintColor: '#808080',
             labelStyle: {fontSize: 16}
         }
     }
-)
+);
 
 const styles = StyleSheet.create({
     container: {
@@ -285,17 +282,17 @@ const styles = StyleSheet.create({
         margin: 10
     },
     formIcon: {
-        marginRight: 8
+        marginRight: 10
     },
     formInput: {
         padding: 8
     },
     formCheckbox: {
-        margin: 10,
+        margin: 8,
         backgroundColor: null
     },
     formButton: {
-        margin: 40,
+        margin: 20,
         marginRight: 40,
         marginLeft: 40
     },
